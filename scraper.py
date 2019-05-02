@@ -53,17 +53,5 @@ for listing in soup.find_all('h4', 'non_table_headers'):
       not record['council_reference']):
     continue
 
-  # Skip if the record already exists in database.
-  try:
-    if scraperwiki.sqlite.select('* FROM data WHERE council_reference="%s"' % record['council_reference']):
-      logging.info('Skipping existing record in sqlite: ' + record['council_reference'])
-      continue
-  except sqlite3.OperationalError, e:
-    if 'no such table:' in e.message:
-      logging.info('Sqlite data does not exist yet. Will be created.')
-      pass
-    else:
-      raise
-
-  logging.info('Writing new record to sqlite: ' + record['council_reference'])
+  logging.info('Writing record to sqlite: ' + record['council_reference'])
   scraperwiki.sqlite.save(unique_keys=['council_reference'], data=record)
