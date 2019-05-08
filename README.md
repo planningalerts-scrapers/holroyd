@@ -1,1 +1,1 @@
-Holroyd City Council Development applications for [PlanningAlerts](https://www.planningalerts.org.au/)
+This scraper has been replaced by https://github.com/planningalerts-scrapers/cumberland
